@@ -1,6 +1,6 @@
 import express from 'express';
-import routes from './routes.js';
-import { connectDatabase, getDatabaseUri } from './config/database.js';
+import routes from './routes.ts';
+import { connectDatabase, getDatabaseUri } from './config/database.ts';
 
 const app = express();
 const port = Number(process.env.PORT ?? 8000);

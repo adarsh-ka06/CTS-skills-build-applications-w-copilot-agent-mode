@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Activity, LeaderboardEntry, Team, User, Workout } from '../models.js';
+import { Activity, LeaderboardEntry, Team, User, Workout } from '../models.ts';
 
 // Seed the octofit_db database with test data
 const mongoUri = process.env.MONGODB_URI ?? 'mongodb://localhost:27017/octofit_db';
