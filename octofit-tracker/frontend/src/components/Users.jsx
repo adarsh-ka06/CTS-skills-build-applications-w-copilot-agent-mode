@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
-const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+const usersApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/users`
+  : 'http://localhost:8000/api/users';
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -13,7 +13,7 @@ function Users() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/users`);
+        const response = await fetch(usersApiUrl);
         const data = await response.json();
         setUsers(Array.isArray(data) ? data : data.items || []);
       } catch (err) {

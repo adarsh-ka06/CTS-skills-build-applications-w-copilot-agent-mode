@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
-const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+const workoutsApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/workouts`
+  : 'http://localhost:8000/api/workouts';
 
 function Workouts() {
   const [workouts, setWorkouts] = useState([]);
@@ -13,7 +13,7 @@ function Workouts() {
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/workouts`);
+        const response = await fetch(workoutsApiUrl);
         const data = await response.json();
         setWorkouts(Array.isArray(data) ? data : data.items || []);
       } catch (err) {

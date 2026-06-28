@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
-const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+const teamsApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/teams`
+  : 'http://localhost:8000/api/teams';
 
 function Teams() {
   const [teams, setTeams] = useState([]);
@@ -13,7 +13,7 @@ function Teams() {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/teams`);
+        const response = await fetch(teamsApiUrl);
         const data = await response.json();
         setTeams(Array.isArray(data) ? data : data.items || []);
       } catch (err) {

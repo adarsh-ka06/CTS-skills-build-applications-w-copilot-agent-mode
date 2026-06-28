@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
-const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+const leaderboardApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/leaderboard`
+  : 'http://localhost:8000/api/leaderboard';
 
 function Leaderboard() {
   const [entries, setEntries] = useState([]);
@@ -13,7 +13,7 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/leaderboard`);
+        const response = await fetch(leaderboardApiUrl);
         const data = await response.json();
         setEntries(Array.isArray(data) ? data : data.items || []);
       } catch (err) {
