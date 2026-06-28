@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
-const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+const activitiesApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/activities`
+  : 'http://localhost:8000/api/activities';
 
 function Activities() {
   const [activities, setActivities] = useState([]);
@@ -13,7 +13,7 @@ function Activities() {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/activities`);
+        const response = await fetch(activitiesApiUrl);
         const data = await response.json();
         setActivities(Array.isArray(data) ? data : data.items || []);
       } catch (err) {
